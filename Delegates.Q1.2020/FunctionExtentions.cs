@@ -35,6 +35,11 @@ namespace Delegates.Q1._2020
             {
                 foreach (var predicate in predicates)
                 {
+                    if (predicate is null)
+                    {
+                        continue;
+                    }
+
                     if (!predicate(item))
                     {
                         return false;

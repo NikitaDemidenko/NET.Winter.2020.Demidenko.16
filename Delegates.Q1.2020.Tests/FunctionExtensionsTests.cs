@@ -63,5 +63,25 @@ namespace Delegates.Q1._2020.Tests
             Assert.IsFalse(result(0));
             Assert.IsFalse(result(-1000));
         }
+
+        [Test]
+        public void FunctionExtension_CombinePredicates_SomePredicatesAreNull()
+        {
+            var result = CombinePredicatesWithAnd(new Predicate<int>[]
+            {
+                x => x > 0,
+                null,
+                x => x != 0,
+                x => x != 1,
+                null,
+            });
+
+            Assert.IsTrue(result(2));
+            Assert.IsTrue(result(5));
+            Assert.IsTrue(result(1000));
+            Assert.IsFalse(result(-20));
+            Assert.IsFalse(result(0));
+            Assert.IsFalse(result(-1000));
+        }
     }
 }
